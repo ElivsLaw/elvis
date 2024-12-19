@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +13,20 @@
 
         /* 導覽列樣式 */
         .navbar {
-            background-color: #1e3a8a; /* 深藍色背景 */
+            background-color: #1e3a8a;
+            /* 深藍色背景 */
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
         }
+
         .navbar .logo {
             font-size: 24px;
             font-weight: bold;
         }
+
         .navbar ul {
             list-style: none;
             margin: 0;
@@ -30,14 +34,17 @@
             display: flex;
             gap: 20px;
         }
+
         .navbar ul li {
             display: inline;
         }
+
         .navbar ul li a {
             text-decoration: none;
             color: white;
             font-size: 16px;
         }
+
         .navbar ul li a:hover {
             text-decoration: underline;
         }
@@ -45,25 +52,31 @@
         /* Header 區域樣式 */
         .header {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 左右分兩部分 */
+            grid-template-columns: 1fr 1fr;
+            /* 左右分兩部分 */
             grid-template-rows: auto;
-            background-color: #1e3a8a; /* 深藍背景 */
+            background-color: #1e3a8a;
+            /* 深藍背景 */
             color: white;
         }
+
         .header-text {
             padding: 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
+
         .header-text h1 {
             font-size: 36px;
             margin: 0 0 20px 0;
         }
+
         .header-text p {
             font-size: 18px;
             margin: 0 0 30px 0;
         }
+
         .header-text button {
             padding: 10px 20px;
             font-size: 16px;
@@ -73,6 +86,7 @@
             cursor: pointer;
             border-radius: 5px;
         }
+
         .header-text button:hover {
             background-color: #e2e8f0;
         }
@@ -80,19 +94,26 @@
         /* 圖片滑動容器樣式 */
         .slider-container {
             position: relative;
-            width: 1000px;
-            max-width: 500px; /* 限制寬度 */
-            overflow: hidden; /* 隱藏超出範圍的內容 */
-            margin: auto; /* 水平居中 */
+            width: 100%;
+            max-width: 100%;
+            /* 限制寬度 */
+            overflow: hidden;
+            /* 隱藏超出範圍的內容 */
+            margin: auto;
+            /* 水平居中 */
         }
+
         .slider {
             display: flex;
-            transition: transform 0.5s ease-in-out; /* 平滑切換效果 */
+            transition: transform 0.5s ease-in-out;
+            /* 平滑切換效果 */
         }
+
         .slider img {
             width: 100%;
             flex-shrink: 0;
         }
+
         .slider-button {
             position: absolute;
             top: 50%;
@@ -105,12 +126,15 @@
             padding: 10px 20px;
             border-radius: 5px;
         }
+
         .slider-button.left {
             left: 10px;
         }
+
         .slider-button.right {
             right: 10px;
         }
+
         .slider-button:hover {
             background-color: rgba(0, 0, 0, 0.7);
         }
@@ -120,16 +144,19 @@
             padding: 40px 20px;
             text-align: center;
         }
+
         .services h2 {
             font-size: 28px;
             margin-bottom: 20px;
         }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding: 20px;
         }
+
         .service-item {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
@@ -138,46 +165,56 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: left;
         }
+
         .service-item h3 {
             font-size: 20px;
             margin-bottom: 10px;
         }
+
         .service-item p {
             font-size: 16px;
             color: #4b5563;
         }
+
         /* 專業律師團隊樣式 */
         .lawyer-team {
             padding: 40px 20px;
             text-align: center;
         }
+
         .lawyer-team h2 {
             font-size: 28px;
             margin-bottom: 20px;
         }
+
         .lawyer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             padding: 20px;
         }
+
         .lawyer-item {
             text-align: center;
         }
+
         .lawyer-item img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             margin-bottom: 10px;
         }
+
         .lawyer-item h3 {
             font-size: 18px;
             margin-bottom: 5px;
         }
+
         .lawyer-item p {
             font-size: 14px;
             color: #6b7280;
         }
+
         /* 聯絡我們區塊 */
         .contact-section {
             background-color: white;
@@ -190,23 +227,28 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
+
         .contact-info {
             display: flex;
             flex-direction: column;
             gap: 10px;
             font-size: 16px;
         }
+
         .contact-info p {
             margin: 0;
         }
+
         .contact-info i {
             margin-right: 10px;
         }
+
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
+
         .contact-form input,
         .contact-form textarea {
             padding: 10px;
@@ -214,6 +256,7 @@
             border-radius: 5px;
             font-size: 14px;
         }
+
         .contact-form button {
             background-color: #1e3a8a;
             color: white;
@@ -223,6 +266,7 @@
             font-size: 16px;
             cursor: pointer;
         }
+
         .contact-form button:hover {
             background-color: #174080;
         }
@@ -236,31 +280,38 @@
             justify-content: space-between;
             flex-wrap: wrap;
         }
+
         .footer-column {
             flex: 1;
             min-width: 200px;
             margin-bottom: 20px;
         }
+
         .footer-column h3 {
             font-size: 18px;
             margin-bottom: 15px;
         }
+
         .footer-column ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+
         .footer-column ul li {
             margin-bottom: 10px;
             font-size: 14px;
         }
+
         .footer-column ul li a {
             text-decoration: none;
             color: white;
         }
+
         .footer-column ul li a:hover {
             text-decoration: underline;
         }
+
         .footer-bottom {
             text-align: center;
             margin-top: 20px;
@@ -273,173 +324,264 @@
             display: flex;
             gap: 10px;
         }
+
         .social-icons a {
             text-decoration: none;
             color: white;
             font-size: 18px;
         }
+
+        @media (max-width: 768px) {
+
+            /* 導覽列垂直排列 */
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+            }
+
+            /* Header 區域單列排列 */
+            .header {
+                grid-template-columns: 1fr;
+            }
+
+            .header-text {
+                padding: 20px;
+            }
+
+            /* Slider 寬度調整 */
+            .slider-container {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* 服務項目區域單列顯示 */
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* 律師團隊區域調整為兩列 */
+            .lawyer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            /* 聯絡我們區域單列 */
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+
+            /* 頁尾區域垂直排列 */
+            .footer {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                /* 單列顯示 */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lawyer-grid {
+                grid-template-columns: 1fr 1fr;
+                /* 兩列顯示 */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+                /* 單列顯示 */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-column {
+                margin-bottom: 20px;
+                /* 增加間距 */
+            }
+        }
     </style>
 </head>
+
 <body>
 
-<!-- 導覽列 -->
-<div class="navbar">
-    <div class="logo">法律專家</div>
-    <ul>
-        <li><a href="#">首頁</a></li>
-        <li><a href="#">最新消息</a></li>
-        <li><a href="#">服務團隊</a></li>
-        <li><a href="#">成功案例</a></li>
-        <li><a href="#">聯絡我們</a></li>
-    </ul>
-</div>
-
-<!-- Header 區域 -->
-<div class="header">
-    <!-- 左邊文字內容 -->
-    <div class="header-text">
-        <h1>專業法律諮詢服務</h1>
-        <p>我們提供全方位的法律服務，保障您的權益</p>
-        <button>免費諮詢</button>
-    </div>
-    <!-- 右邊滑動圖片 -->
-    <div class="slider-container">
-        <div class="slider" id="slider">
-            <img src="111.jpg" alt="圖片1">
-            <img src="222.jpg" alt="圖片2">
-            <img src="cat.png" alt="圖片3">
-        </div>
-        <button class="slider-button left" id="prevBtn">&lt;</button>
-        <button class="slider-button right" id="nextBtn">&gt;</button>
-    </div>
-</div>
-
-<!-- 服務項目區域 -->
-<div class="services">
-    <h2>我們的服務項目</h2>
-    <div class="services-grid">
-        <!-- 第一個服務項目 -->
-        <div class="service-item">
-            <h3>商業法律</h3>
-            <p>提供企業法律諮詢、合約審查、商業註冊等服務。</p>
-        </div>
-        <!-- 第二個服務項目 -->
-        <div class="service-item">
-            <h3>房地產法律</h3>
-            <p>專注於買賣契約、租賃糾紛、土地開發等專業服務。</p>
-        </div>
-        <!-- 第三個服務項目 -->
-        <div class="service-item">
-            <h3>民事訴訟</h3>
-            <p>協助處理各類民事訴訟、談判與和解服務。</p>
-        </div>
-    </div>
-</div>
-<!-- 專業律師團隊區域 -->
-<div class="lawyer-team">
-    <h2>專業律師團隊</h2>
-    <div class="lawyer-grid">
-        <div class="lawyer-item">
-            <img src="guinea-pig-542917_1280.jpg" alt="張大律師">
-            <h3>張大律師</h3>
-            <p>商業法律專家</p>
-        </div>
-        <div class="lawyer-item">
-            <img src="hamster-3528445_1280.jpg" alt="李資深律師">
-            <h3>李資深律師</h3>
-            <p>房地產法律專家</p>
-        </div>
-        <div class="lawyer-item">
-            <img src="hedgehog-1215140_1280.jpg" alt="王律師">
-            <h3>王律師</h3>
-            <p>民事訴訟專家</p>
-        </div>
-        <div class="lawyer-item">
-            <img src="prairie-dog-1925814_1280.jpg" alt="陳律師">
-            <h3>陳律師</h3>
-            <p>稅務糾紛專家</p>
-        </div>
-    </div>
-</div>
-<!-- 專業律師團隊結束後的聯絡我們區塊 -->
-<div class="contact-section">
-    <div class="contact-info">
-        <h2>聯絡我們</h2>
-        <p>📍 台北市信義區忠孝東路100號</p>
-        <p>📞 (02) 2345-6789</p>
-        <p>📧 contact@law-expert.com</p>
-    </div>
-    <form class="contact-form">
-        <input type="text" placeholder="姓名" required>
-        <input type="email" placeholder="電子郵件" required>
-        <input type="tel" placeholder="電話" required>
-        <textarea placeholder="留言內容" rows="5" required></textarea>
-        <button type="submit">送出</button>
-    </form>
-</div>
-
-<!-- 頁尾 -->
-<div class="footer">
-    <div class="footer-column">
-        <h3>法律專家</h3>
-        <p>提供專業法律諮詢服務</p>
-    </div>
-    <div class="footer-column">
-        <h3>服務項目</h3>
+    <!-- 導覽列 -->
+    <div class="navbar">
+        <div class="logo">法律專家</div>
         <ul>
-            <li><a href="#">商業法律</a></li>
-            <li><a href="#">房地產法律</a></li>
-            <li><a href="#">民事訴訟</a></li>
-            <li><a href="#">稅務糾紛</a></li>
+            <li><a href="#">首頁</a></li>
+            <li><a href="#">最新消息</a></li>
+            <li><a href="#">服務團隊</a></li>
+            <li><a href="#">成功案例</a></li>
+            <li><a href="#">聯絡我們</a></li>
         </ul>
     </div>
-    <div class="footer-column">
-        <h3>聯絡資訊</h3>
-        <p>📍 台北市信義區忠孝東路100號</p>
-        <p>📞 (02) 2345-6789</p>
-        <p>📧 contact@law-expert.com</p>
-    </div>
-    <div class="footer-column">
-        <h3>關注我們</h3>
-        <div class="social-icons">
-            <a href="#">🔗</a>
-            <a href="#">🔗</a>
-            <a href="#">🔗</a>
+
+    <!-- Header 區域 -->
+    <div class="header">
+        <!-- 左邊文字內容 -->
+        <div class="header-text">
+            <h1>專業法律諮詢服務</h1>
+            <p>我們提供全方位的法律服務，保障您的權益</p>
+            <button>免費諮詢</button>
+        </div>
+        <!-- 右邊滑動圖片 -->
+        <div class="slider-container">
+            <div class="slider" id="slider">
+                <img src="111.jpg" alt="圖片1">
+                <img src="222.jpg" alt="圖片2">
+                <img src="cat.png" alt="圖片3">
+            </div>
+            <button class="slider-button left" id="prevBtn">&lt;</button>
+            <button class="slider-button right" id="nextBtn">&gt;</button>
         </div>
     </div>
-</div>
 
-<div class="footer-bottom">
-    © 2025 法律專家. All rights reserved.
-</div>
-<script>
-    // JavaScript: 處理滑動邏輯
-    const slider = document.getElementById('slider');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    <!-- 服務項目區域 -->
+    <div class="services">
+        <h2>我們的服務項目</h2>
+        <div class="services-grid">
+            <!-- 第一個服務項目 -->
+            <div class="service-item">
+                <h3>商業法律</h3>
+                <p>提供企業法律諮詢、合約審查、商業註冊等服務。</p>
+            </div>
+            <!-- 第二個服務項目 -->
+            <div class="service-item">
+                <h3>房地產法律</h3>
+                <p>專注於買賣契約、租賃糾紛、土地開發等專業服務。</p>
+            </div>
+            <!-- 第三個服務項目 -->
+            <div class="service-item">
+                <h3>民事訴訟</h3>
+                <p>協助處理各類民事訴訟、談判與和解服務。</p>
+            </div>
+        </div>
+    </div>
+    <!-- 專業律師團隊區域 -->
+    <div class="lawyer-team">
+        <h2>專業律師團隊</h2>
+        <div class="lawyer-grid">
+            <div class="lawyer-item">
+                <img src="guinea-pig-542917_1280.jpg" alt="張大律師">
+                <h3>張大律師</h3>
+                <p>商業法律專家</p>
+            </div>
+            <div class="lawyer-item">
+                <img src="hamster-3528445_1280.jpg" alt="李資深律師">
+                <h3>李資深律師</h3>
+                <p>房地產法律專家</p>
+            </div>
+            <div class="lawyer-item">
+                <img src="hedgehog-1215140_1280.jpg" alt="王律師">
+                <h3>王律師</h3>
+                <p>民事訴訟專家</p>
+            </div>
+            <div class="lawyer-item">
+                <img src="prairie-dog-1925814_1280.jpg" alt="陳律師">
+                <h3>陳律師</h3>
+                <p>稅務糾紛專家</p>
+            </div>
+        </div>
+    </div>
+    <!-- 專業律師團隊結束後的聯絡我們區塊 -->
+    <div class="contact-section">
+        <div class="contact-info">
+            <h2>聯絡我們</h2>
+            <p>📍 台北市信義區忠孝東路100號</p>
+            <p>📞 (02) 2345-6789</p>
+            <p>📧 contact@law-expert.com</p>
+        </div>
+        <form class="contact-form">
+            <input type="text" placeholder="姓名" required>
+            <input type="email" placeholder="電子郵件" required>
+            <input type="tel" placeholder="電話" required>
+            <textarea placeholder="留言內容" rows="5" required></textarea>
+            <button type="submit">送出</button>
+        </form>
+    </div>
 
-    let currentIndex = 0; // 當前圖片索引
+    <!-- 頁尾 -->
+    <div class="footer">
+        <div class="footer-column">
+            <h3>法律專家</h3>
+            <p>提供專業法律諮詢服務</p>
+        </div>
+        <div class="footer-column">
+            <h3>服務項目</h3>
+            <ul>
+                <li><a href="#">商業法律</a></li>
+                <li><a href="#">房地產法律</a></li>
+                <li><a href="#">民事訴訟</a></li>
+                <li><a href="#">稅務糾紛</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>聯絡資訊</h3>
+            <p>📍 台北市信義區忠孝東路100號</p>
+            <p>📞 (02) 2345-6789</p>
+            <p>📧 contact@law-expert.com</p>
+        </div>
+        <div class="footer-column">
+            <h3>關注我們</h3>
+            <div class="social-icons">
+                <a href="#">🔗</a>
+                <a href="#">🔗</a>
+                <a href="#">🔗</a>
+            </div>
+        </div>
+    </div>
 
-    // 下一張圖片
-    nextBtn.addEventListener('click', () => {
-        const totalImages = slider.children.length; // 獲取圖片總數
-        currentIndex = (currentIndex + 1) % totalImages; // 循環索引
-        updateSlider();
-    });
+    <div class="footer-bottom">
+        © 2025 法律專家. All rights reserved.
+    </div>
+    <script>
+        // JavaScript: 處理滑動邏輯
+        const slider = document.getElementById('slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
-    // 上一張圖片
-    prevBtn.addEventListener('click', () => {
-        const totalImages = slider.children.length; // 獲取圖片總數
-        currentIndex = (currentIndex - 1 + totalImages) % totalImages; // 循環索引
-        updateSlider();
-    });
+        let currentIndex = 0; // 當前圖片索引
 
-    // 更新滑動效果
-    function updateSlider() {
-        const slideWidth = slider.children[0].clientWidth; // 單張圖片寬度
-        slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`; // 移動到當前圖片
-    }
-</script>
+        // 下一張圖片
+        nextBtn.addEventListener('click', () => {
+            const totalImages = slider.children.length; // 獲取圖片總數
+            currentIndex = (currentIndex + 1) % totalImages; // 循環索引
+            updateSlider();
+        });
+
+        // 上一張圖片
+        prevBtn.addEventListener('click', () => {
+            const totalImages = slider.children.length; // 獲取圖片總數
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages; // 循環索引
+            updateSlider();
+        });
+
+        // 更新滑動效果
+        function updateSlider() {
+            const slideWidth = slider.children[0].clientWidth; // 單張圖片寬度
+            slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`; // 移動到當前圖片
+        }
+    </script>
 
 </body>
+
 </html>
