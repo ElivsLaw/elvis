@@ -178,6 +178,106 @@
             font-size: 14px;
             color: #6b7280;
         }
+        /* 聯絡我們區塊 */
+        .contact-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 40px 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 16px;
+        }
+        .contact-info p {
+            margin: 0;
+        }
+        .contact-info i {
+            margin-right: 10px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .contact-form button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #174080;
+        }
+
+        /* 頁尾樣式 */
+        .footer {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .footer-column ul li a {
+            text-decoration: none;
+            color: white;
+        }
+        .footer-column ul li a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #d1d5db;
+        }
+
+        /* 圖標樣式 */
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .social-icons a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -260,6 +360,57 @@
             <p>稅務糾紛專家</p>
         </div>
     </div>
+</div>
+<!-- 專業律師團隊結束後的聯絡我們區塊 -->
+<div class="contact-section">
+    <div class="contact-info">
+        <h2>聯絡我們</h2>
+        <p>📍 台北市信義區忠孝東路100號</p>
+        <p>📞 (02) 2345-6789</p>
+        <p>📧 contact@law-expert.com</p>
+    </div>
+    <form class="contact-form">
+        <input type="text" placeholder="姓名" required>
+        <input type="email" placeholder="電子郵件" required>
+        <input type="tel" placeholder="電話" required>
+        <textarea placeholder="留言內容" rows="5" required></textarea>
+        <button type="submit">送出</button>
+    </form>
+</div>
+
+<!-- 頁尾 -->
+<div class="footer">
+    <div class="footer-column">
+        <h3>法律專家</h3>
+        <p>提供專業法律諮詢服務</p>
+    </div>
+    <div class="footer-column">
+        <h3>服務項目</h3>
+        <ul>
+            <li><a href="#">商業法律</a></li>
+            <li><a href="#">房地產法律</a></li>
+            <li><a href="#">民事訴訟</a></li>
+            <li><a href="#">稅務糾紛</a></li>
+        </ul>
+    </div>
+    <div class="footer-column">
+        <h3>聯絡資訊</h3>
+        <p>📍 台北市信義區忠孝東路100號</p>
+        <p>📞 (02) 2345-6789</p>
+        <p>📧 contact@law-expert.com</p>
+    </div>
+    <div class="footer-column">
+        <h3>關注我們</h3>
+        <div class="social-icons">
+            <a href="#">🔗</a>
+            <a href="#">🔗</a>
+            <a href="#">🔗</a>
+        </div>
+    </div>
+</div>
+
+<div class="footer-bottom">
+    © 2025 法律專家. All rights reserved.
 </div>
 <script>
     // JavaScript: 處理滑動邏輯
