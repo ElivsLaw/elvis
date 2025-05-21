@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NSDR 放鬆引導</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --circle-color: radial-gradient(circle at center, #60a5fa 30%, #3b82f6);
+            --text-color: #f1f5f9;
+            /* 新增這行 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: 'Noto Serif TC', serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            /* 修改這行 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .controls label {
+            font-size: 0.9rem;
+        }
+
+        .controls input,
+        .controls select {
+            padding: 5px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #timer {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        #prompt {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .shape {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+            background: var(--circle-color);
+            transform: scale(1);
+            transition: transform ease-in-out;
+            /* 改為 JS 控制縮放用 */
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+
+        .circle {
+            border-radius: 50%;
+        }
+
+        .square {
+            border-radius: 15px;
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            background: #ef4444;
+            animation: heartbeat 8s infinite ease-in-out;
+            margin-top: 30px;
+
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            background: #ef4444;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -52px;
+            left: 2;
+        }
+
+        .heart::after {
+            left: 48px;
+            top: -2px;
+            width: 98px;
+            height: 92px;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1) rotate(-45deg)translateX(-10px);
+            }
+
+            14% {
+                transform: scale(1.25) rotate(-45deg)translateX(-10px);
+            }
+
+            28% {
+                transform: scale(1) rotate(-45deg)translateX(-10px);
+            }
+
+            42% {
+                transform: scale(1.15) rotate(-45deg)translateX(-10px);
+            }
+
+            70% {
+                transform: scale(1) rotate(-45deg)translateX(-10px);
+            }
+
+            100% {
+                transform: scale(1) rotate(-45deg)translateX(-10px);
+            }
+        }
+
+        .heart {
+            animation: heartbeat 1.8s infinite ease-in-out;
+        }
+
+
+        @keyframes breathe {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>NSDR 放鬆練習</h1>
+    <div class="controls">
+        <label>總時間 (分鐘)
+            <input type="number" id="durationInput" value="10" min="1" max="60">
+        </label>
+        <label>吸氣時間
+            <input type="number" id="inhaleInput" value="4" min="1" max="10">
+        </label>
+        <label>停留時間
+            <input type="number" id="holdInput" value="2" min="0" max="10">
+        </label>
+        <label>吐氣時間
+            <input type="number" id="exhaleInput" value="4" min="1" max="10">
+        </label>
+        <label>主題
+            <select id="themeSelect">
+                <option value="blue">深藍</option>
+                <option value="peach">粉橘</option>
+                <option value="green">暖綠</option>
+            </select>
+        </label>
+        <label>動畫形狀
+            <select id="shapeSelect">
+                <option value="circle">圓形</option>
+                <option value="square">正方形</option>
+                <option value="heart">心型</option>
+            </select>
+        </label>
+    </div>
+
+    <div id="timer">10:00</div>
+    <div id="prompt">慢慢吸氣…</div>
+    <div id="animation" class="shape circle"></div>
+
+    <script>
+        let remainingSeconds;
+        let inhale = 4, hold = 2, exhale = 4;
+        const timerDisplay = document.getElementById("timer");
+        const promptDisplay = document.getElementById("prompt");
+        const durationInput = document.getElementById("durationInput");
+        const inhaleInput = document.getElementById("inhaleInput");
+        const holdInput = document.getElementById("holdInput");
+        const exhaleInput = document.getElementById("exhaleInput");
+        const themeSelect = document.getElementById("themeSelect");
+        const shapeSelect = document.getElementById("shapeSelect");
+        const animationDiv = document.getElementById("animation");
+
+        const themes = {
+            blue: { bg: '#0f172a', color: 'radial-gradient(circle, #60a5fa 30%, #3b82f6)', text: '#f1f5f9' },
+            peach: { bg: '#fff7ed', color: 'radial-gradient(circle, #fbbf24, #fb923c)', text: '#1e293b' },
+            green: { bg: '#f0fdf4', color: 'radial-gradient(circle, #4ade80, #22c55e)', text: '#065f46' }
+        };
+
+
+        function updateTimer() {
+            const min = Math.floor(remainingSeconds / 60);
+            const sec = remainingSeconds % 60;
+            timerDisplay.textContent = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+        }
+
+        function breathingCycle() {
+            animationDiv.style.transitionDuration = `${inhale}s`;
+            animationDiv.style.transform = "scale(1.5)";
+            promptDisplay.textContent = "慢慢吸氣…";
+
+            setTimeout(() => {
+                animationDiv.style.transitionDuration = `0s`;
+                animationDiv.style.transform = "scale(1.5)";
+                promptDisplay.textContent = "停留…";
+
+                setTimeout(() => {
+                    animationDiv.style.transitionDuration = `${exhale}s`;
+                    animationDiv.style.transform = "scale(1)";
+                    promptDisplay.textContent = "緩緩吐氣…";
+
+                    setTimeout(breathingCycle, exhale * 1000); // 重複循環
+                }, hold * 1000);
+
+            }, inhale * 1000);
+        }
+
+
+        function applySettings() {
+            inhale = parseInt(inhaleInput.value);
+            hold = parseInt(holdInput.value);
+            exhale = parseInt(exhaleInput.value);
+            remainingSeconds = parseInt(durationInput.value) * 60;
+            updateTimer();
+        }
+
+        function applyTheme() {
+            const selected = themes[themeSelect.value];
+            document.documentElement.style.setProperty('--bg-color', selected.bg);
+            document.documentElement.style.setProperty('--circle-color', selected.color);
+            document.documentElement.style.setProperty('--text-color', selected.text); // ← 新增這行
+        }
+
+
+        function applyShape() {
+            animationDiv.className = 'shape ' + shapeSelect.value;
+        }
+
+        // 初始啟動
+        applySettings();
+        applyTheme();
+        applyShape();
+        breathingCycle();
+        setInterval(() => {
+            if (remainingSeconds > 0) {
+                remainingSeconds--;
+                updateTimer();
+            }
+        }, 1000);
+
+        // 監聽變更
+        [durationInput, inhaleInput, holdInput, exhaleInput].forEach(input => {
+            input.addEventListener("change", applySettings);
+        });
+        themeSelect.addEventListener("change", applyTheme);
+        shapeSelect.addEventListener("change", applyShape);
+    </script>
+
+</body>
+
+</html>
