@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾森豪四象限法則</title>
+    <style>
+        body {
+            font-family: "Noto Sans TC", sans-serif;
+            background: linear-gradient(to right, #eef2f3, #8e9eab);
+            margin: 0;
+            padding: 2rem;
+            color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark {
+            background: #1e1e1e;
+            color: #ddd;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        body.dark h1, body.dark h2 {
+            color: #f0f0f0;
+        }
+        .toggle-mode {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+        .quadrant {
+            border-radius: 12px;
+            padding: 1rem;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: background 0.3s;
+        }
+        body.dark .quadrant {
+            background: #2c2c2c;
+        }
+        .q1 { border-top: 8px solid #e74c3c; }
+        .q2 { border-top: 8px solid #27ae60; }
+        .q3 { border-top: 8px solid #f1c40f; }
+        .q4 { border-top: 8px solid #95a5a6; }
+        .label {
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+        .desc {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .task-input {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .task-input input {
+            flex: 1;
+            padding: 0.4rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .task-input button {
+            padding: 0.4rem 1rem;
+            border: none;
+            border-radius: 6px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f9f9f9;
+            margin-bottom: 0.3rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: grab;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        body.dark li {
+            background: #3c3c3c;
+        }
+        .done {
+            text-decoration: line-through;
+            color: #999;
+        }
+        .task-actions {
+            display: flex;
+            gap: 0.3rem;
+        }
+        .task-actions button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>艾森豪四象限法則</h1>
+    <h2>幫助你管理時間與專注力</h2>
+    <div class="toggle-mode">
+        <button onclick="toggleDarkMode()">🌙 切換深色模式</button>
+    </div>
+    <div class="matrix">
+        <div class="quadrant q1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="label">第一象限：重要且緊急</div>
+            <div class="desc">→ 馬上執行</div>
+            <ul id="q1" class="task-list"></ul>
+            <div class="task-input">
+                <input type="text" placeholder="新增任務..." id="input-q1">
+                <button onclick="addTask('q1')">新增</button>
+            </div>
+        </div>
+        <div class="quadrant q2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="label">第二象限：重要但不緊急</div>
+            <div class="desc">→ 安排時間完成</div>
+            <ul id="q2" class="task-list"></ul>
+            <div class="task-input">
+                <input type="text" placeholder="新增任務..." id="input-q2">
+                <button onclick="addTask('q2')">新增</button>
+            </div>
+        </div>
+        <div class="quadrant q3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="label">第三象限：緊急但不重要</div>
+            <div class="desc">→ 授權他人處理</div>
+            <ul id="q3" class="task-list"></ul>
+            <div class="task-input">
+                <input type="text" placeholder="新增任務..." id="input-q3">
+                <button onclick="addTask('q3')">新增</button>
+            </div>
+        </div>
+        <div class="quadrant q4" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="label">第四象限：不重要且不緊急</div>
+            <div class="desc">→ 果斷刪除</div>
+            <ul id="q4" class="task-list"></ul>
+            <div class="task-input">
+                <input type="text" placeholder="新增任務..." id="input-q4">
+                <button onclick="addTask('q4')">新增</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let dragged = null;
+
+        function addTask(quadrantId) {
+            const input = document.getElementById('input-' + quadrantId);
+            const taskText = input.value.trim();
+            if (taskText === '') return;
+            const li = createTaskElement(taskText);
+            document.getElementById(quadrantId).appendChild(li);
+            input.value = '';
+        }
+
+        function createTaskElement(text) {
+            const li = document.createElement('li');
+            li.setAttribute('draggable', true);
+            li.setAttribute('ondragstart', 'drag(event)');
+
+            const span = document.createElement('span');
+            span.textContent = text;
+
+            const actions = document.createElement('div');
+            actions.classList.add('task-actions');
+
+            const checkBtn = document.createElement('button');
+            checkBtn.innerHTML = '✅';
+            checkBtn.onclick = () => span.classList.toggle('done');
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.innerHTML = '❌';
+            deleteBtn.onclick = () => li.remove();
+
+            actions.appendChild(checkBtn);
+            actions.appendChild(deleteBtn);
+
+            li.appendChild(span);
+            li.appendChild(actions);
+            return li;
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            dragged = ev.target;
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const ul = ev.target.closest('.quadrant').querySelector('ul');
+            if (dragged && ul) ul.appendChild(dragged);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+        }
+    </script>
+</body>
+</html>
