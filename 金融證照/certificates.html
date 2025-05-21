@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>金融證照展示</title>
   <style>
+  
     body {
       font-family: "Helvetica Neue", sans-serif;
       background: linear-gradient(to right, #eef2f3, #dfe9f3);
@@ -197,17 +198,68 @@
     <img class="modal-content" id="modalImg" src="">
   </div>
 
-  <script>
-    function openModal(imageSrc) {
-      const modal = document.getElementById("imageModal");
-      const modalImg = document.getElementById("modalImg");
-      modalImg.src = imageSrc;
-      modal.style.display = "block";
-    }
+<script>
+  const certificates = [
+    { src: "certificate_1.jpg", title: "信託業務專業測驗" },
+    { src: "certificate_2.jpg", title: "投信投顧相關法規(含自律規範)專業科目測驗" },
+    { src: "certificate_3.jpg", title: "人身保險業務員資格測驗" },
+    { src: "certificate_4.jpg", title: "中華民國財產保險業務員專業科目資格測驗" },
+    { src: "certificate_5.jpg", title: "銀行內部控制與內部稽核測驗" },
+    { src: "certificate_6.jpg", title: "債權委外催收人員專業能力測驗" }
+  ];
 
-    function closeModal() {
-      document.getElementById("imageModal").style.display = "none";
+  let currentIndex = 0;
+
+  function openModal(index) {
+    currentIndex = index;
+    updateModal();
+    document.getElementById("imageModal").style.display = "block";
+  }
+
+  function updateModal() {
+    const modalImg = document.getElementById("modalImg");
+    const caption = document.getElementById("caption");
+    modalImg.src = certificates[currentIndex].src;
+    caption.textContent = certificates[currentIndex].title;
+  }
+
+  function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+  }
+
+  function prevImage(event) {
+    event.stopPropagation();
+    currentIndex = (currentIndex - 1 + certificates.length) % certificates.length;
+    updateModal();
+  }
+
+  function nextImage(event) {
+    event.stopPropagation();
+    currentIndex = (currentIndex + 1) % certificates.length;
+    updateModal();
+  }
+
+  document.addEventListener("keydown", function(e) {
+    const modal = document.getElementById("imageModal");
+    if (modal.style.display !== "block") return;
+
+    if (e.key === "ArrowLeft") {
+      prevImage(e);
+    } else if (e.key === "ArrowRight") {
+      nextImage(e);
+    } else if (e.key === "Escape") {
+      closeModal();
     }
-  </script>
+  });
+</script>
+
+  <!-- Modal -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <span class="modal-close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImg" src="">
+  <div id="caption" style="color: white; text-align: center; margin-top: 1rem; font-size: 1.2rem;"></div>
+  <div style="position: absolute; top: 50%; left: 20px; font-size: 2rem; color: white; cursor: pointer;" onclick="prevImage(event)">&#10094;</div>
+  <div style="position: absolute; top: 50%; right: 20px; font-size: 2rem; color: white; cursor: pointer;" onclick="nextImage(event)">&#10095;</div>
+</div>
 </body>
 </html>
